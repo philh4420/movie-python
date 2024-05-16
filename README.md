@@ -46,7 +46,7 @@ My Movie DB is a Flask-based web application that allows users to discover and e
 
 4. **Set up your TMDB API key:**
 
-    Replace `'your_tmdb_api_key_here'` with your actual TMDB API key in `main.py`.
+    Replace `'your_tmdb_api_key_here'` with your actual TMDB API key in `config.py`.
 
 5. **Run the application locally:**
 
