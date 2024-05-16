@@ -27,7 +27,7 @@ My Movie DB is a Flask-based web application that allows users to discover and e
 1. **Clone the repository:**
 
     ```sh
-    git clone https://github.com/yourusername/mymoviedb.git
+    git clone https://github.com/philh4420/movie-python.git
     cd mymoviedb
     ```
 
