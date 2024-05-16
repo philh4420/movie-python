@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  background: #141414;
+  /* Netflix's dark background */
+}
+
+/* layout.html styles */
+.site-header {
+  background: #141414;
+  /* Dark background for header */
+  padding: 20px 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+  /* Subtle shadow for depth */
+}
+
+.site-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.site-nav .nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.site-nav .nav-list li {
+  margin: 0 20px;
+  /* More spacing between navigation items */
+}
+
+.site-nav .nav-list a {
+  color: #e50914;
+  /* Netflix red */
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.site-nav .nav-list a:hover,
+.site-nav .nav-list a:focus {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+  background: #141414;
+  /* Dark background for the content area */
+  margin-top: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background: #141414;
+  /* Consistent dark background for the footer */
+  color: #e50914;
+  /* Netflix red for contrast */
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .site-nav .nav-list {
+    flex-direction: column;
+  }
+
+  .site-nav .nav-list li {
+    margin-bottom: 10px;
+  }
+}
+
+

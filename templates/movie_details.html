@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="movie-details">
+  <h1>{{ movie.title }}</h1>
+  <div class="movie-metadata">
+    {% if movie.poster_path %}
+      <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}" class="movie-poster"/>
+    {% endif %}
+    <div class="movie-info">
+      <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+      <p><strong>Rating:</strong> {{ movie.vote_average }}/10</p>
+      <p><strong>Runtime:</strong> {{ movie.runtime }} minutes</p>
+      <p><strong>Genres:</strong>
+        {% for genre in movie.genres %}
+          {{ genre.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      </p>
+      <p><strong>Overview:</strong> {{ movie.overview }}</p>
+    </div>
+  </div>
+  {% if movie.videos.results %}
+    <div class="movie-trailers">
+      <h3>Trailers</h3>
+      <div class="trailer-buttons">
+        {% for video in movie.videos.results %}
+          <button onclick="openTrailer('{{ video.key }}')">Trailer {{ loop.index }}</button>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  <h3>Cast</h3>
+  <ul class="cast-list">
+    {% for cast in movie.credits.cast %}
+      <li>
+        {% if cast.profile_path %}
+          <img src="https://image.tmdb.org/t/p/w45{{ cast.profile_path }}" alt="{{ cast.name }}" title="{{ cast.name }}" class="cast-img">
+        {% endif %}
+        {{ cast.name }} as {{ cast.character }}
+      </li>
+    {% endfor %}
+  </ul>
+  <h3>Crew</h3>
+  <ul class="crew-list">
+    {% for crew in movie.credits.crew %}
+      <li>
+        {% if crew.profile_path %}
+          <img src="https://image.tmdb.org/t/p/w45{{ crew.profile_path }}" alt="{{ crew.name }}" title="{{ crew.name }}" class="crew-img">
+        {% endif %}
+        {{ crew.name }} - {{ crew.job }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% if movie.images.backdrops %}
+    <div class="movie-images">
+      <h3>Images</h3>
+      {% for image in movie.images.backdrops %}
+        {% if image.file_path %}
+          <img src="https://image.tmdb.org/t/p/w500{{ image.file_path }}" alt="Movie scene"/>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if movie.reviews.results %}
+    <div class="movie-reviews">
+      <h3>Reviews</h3>
+      {% for review in movie.reviews.results %}
+        <div class="review">
+          <p><strong>{{ review.author }}</strong> says:</p>
+          <blockquote>{{ review.content }}</blockquote>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% if movie.similar.results %}
+    <div class="similar-movies">
+      <h3>Similar Movies</h3>
+      {% for similar in movie.similar.results %}
+        <div>
+          <a href="{{ url_for('movie_details', movie_id=similar.id) }}">
+            {% if similar.poster_path %}
+              <img src="https://image.tmdb.org/t/p/w200{{ similar.poster_path }}" alt="{{ similar.title }}" class="similar-movie-img">
+            {% endif %}
+            <p>{{ similar.title }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<!-- Modal for Trailer -->
+<dialog id="trailerModal">
+    <div style="background-color: #333; padding: 10px; border: 1px solid #888; max-width: 600px;">
+        <button id="trailerModalClose" aria-label="Close" style="float: right; font-size: 28px; font-weight: bold; background: none; border: none; cursor: pointer;">&times;</button>
+        <div id="trailerModalContent"></div>
+    </div>
+</dialog>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="search-container">
+    <h1>Search Movies</h1>
+    <form method="GET" action="{{ url_for('search') }}" class="search-form">
+        <input type="text" name="query" placeholder="Search for movies..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if movies %}
+    <div class="movies-grid">
+        {% for movie in movies %}
+        <div class="movie-card">
+            <a href="{{ url_for('movie_details', movie_id=movie.id) }}">
+                {% if movie.poster_path %}
+                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+                {% endif %}
+                <div class="movie-info">
+                    <h3>{{ movie.title }}</h3>
+                    <p>Rating: {{ movie.vote_average }}/10</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif query %}
+    <p>No results found for "{{ query }}".</p>
+    {% endif %}
+</div>
+{% endblock %}

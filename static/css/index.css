@@ -1,0 +1,58 @@
+/* General Styling for Home Page */
+.home {
+  background-color: #141414;
+  color: #fff;
+  padding: 20px;
+}
+
+.welcome {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.movie-highlight h3 {
+  color: #e50914;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Movie Grid and Card Styling */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.movie {
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.movie:hover {
+  transform: scale(1.05);
+}
+
+.movie a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  /* Ensure the link covers the entire card */
+}
+
+.movie img {
+  width: 100%;
+  display: block;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.movie-info {
+  padding: 10px;
+  text-align: center;
+}
+
+.movie-info h4 {
+  margin-top: 10px;
+}
